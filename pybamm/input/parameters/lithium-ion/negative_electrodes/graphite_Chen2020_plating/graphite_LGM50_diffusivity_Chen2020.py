@@ -26,9 +26,9 @@ def graphite_LGM50_diffusivity_Chen2020(sto, T):
        Solid diffusivity
     """
 
-    D_ref = 3.3e-14
-    E_D_s = 3.03e4
-    # E_D_s not given by Chen et al (2020), so taken from Ecker et al. (2015) instead
+    D_ref = 2.1e-14
+    E_D_s = 2.9e4
+    # E_D_s not given by Chen et al (2020), so taken from Schmalstieg et al. (2018) instead
     arrhenius = exp(E_D_s / constants.R * (1 / 298.15 - 1 / T))
 
     return D_ref * arrhenius

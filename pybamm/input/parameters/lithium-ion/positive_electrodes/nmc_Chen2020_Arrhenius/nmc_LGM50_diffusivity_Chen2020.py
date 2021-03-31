@@ -26,7 +26,7 @@ def nmc_LGM50_diffusivity_Chen2020(sto, T):
         Solid diffusivity
     """
 
-    D_ref = 4e-15
+    D_ref = 2.7e-15
     E_D_s = 25000  # Used value from Cabanero et al. (2018) for NCA
     arrhenius = exp(E_D_s / constants.R * (1 / 298.15 - 1 / T))
 
