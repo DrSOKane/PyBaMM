@@ -10,7 +10,6 @@ class BatteryModelOptions(pybamm.FuzzyDict):
     """
     Attributes
     ----------
-
     options: dict
         A dictionary of options to be passed to the model. The options that can
         be set are listed below. Note that not all of the options are compatible with
@@ -19,7 +18,6 @@ class BatteryModelOptions(pybamm.FuzzyDict):
         In general, the option provided must be a string, but there are some cases
         where a 2-tuple of strings can be provided instead to indicate a different
         option for the negative and positive electrodes.
-
             * "calculate discharge energy": str
                 Whether to calculate the discharge energy. Must be one of "true" or
                 "false". "false" is the default, since calculating the discharge
@@ -76,7 +74,6 @@ class BatteryModelOptions(pybamm.FuzzyDict):
             * "operating mode" : str
                 Sets the operating mode for the model. This determines how the current
                 is set. Can be:
-
                 - "current" (default) : the current is explicity supplied
                 - "voltage"/"power"/"resistance" : solve an algebraic equation for \
                     current such that voltage/power/resistance is correct
@@ -109,7 +106,6 @@ class BatteryModelOptions(pybamm.FuzzyDict):
                 positive electrodes.
             * "SEI" : str
                 Set the SEI submodel to be used. Options are:
-
                 - "none": :class:`pybamm.sei.NoSEI` (no SEI growth)
                 - "constant": :class:`pybamm.sei.Constant` (constant SEI thickness)
                 - "reaction limited", "solvent-diffusion limited",\
@@ -121,22 +117,16 @@ class BatteryModelOptions(pybamm.FuzzyDict):
                 "distributed" otherwise. This is because the "distributed" model is more
                 complex than the model with no additional resistance, which adds
                 unnecessary complexity if there is no SEI in the first place
-
                 - "none": no additional resistance\
-
                     .. math::
                         \\eta_r = \\frac{F}{RT} * (\\phi_s - \\phi_e - U)
-
                 - "distributed": properly included additional resistance term\
-
                     .. math::
                         \\eta_r = \\frac{F}{RT}
                         * (\\phi_s - \\phi_e - U - R_{sei} * L_{sei} * j)
-
                 - "average": constant additional resistance term (approximation to the \
                     true model). This model can give similar results to the \
                     "distributed" case without needing to make j an algebraic state\
-
                     .. math::
                         \\eta_r = \\frac{F}{RT}
                         * (\\phi_s - \\phi_e - U - R_{sei} * L_{sei} * \\frac{I}{aL})
@@ -166,7 +156,6 @@ class BatteryModelOptions(pybamm.FuzzyDict):
                 Which electrode(s) intercalates and which is counter. If "both"
                 (default), the model is a standard battery. Otherwise can be "negative"
                 or "positive" to indicate a half-cell model.
-
     **Extends:** :class:`dict`
     """
 
@@ -198,12 +187,7 @@ class BatteryModelOptions(pybamm.FuzzyDict):
                 "Marcus-Hush-Chidsey",
             ],
             "interface utilisation": ["full", "constant", "current-driven"],
-            "lithium plating": [
-                "none",
-                "reversible",
-                "partially reversible",
-                "irreversible"
-            ],
+            "lithium plating": ["none", "reversible", "partially reversible", "irreversible"],
             "lithium plating porosity change": ["false", "true"],
             "loss of active material": [
                 "none",
@@ -877,7 +861,6 @@ class BaseBatteryModel(pybamm.BaseModel):
     def summary_variables(self, value):
         """
         Set summary variables
-
         Parameters
         ----------
         value : list of strings
@@ -1273,7 +1256,6 @@ class BaseBatteryModel(pybamm.BaseModel):
         on dimensional symbols. Operators in pybamm are written in non-dimensional
         form, so may need to be scaled by the appropriate length scale. It is
         recommended to use this method on non-dimensional symbols.
-
         Parameters
         ----------
         symbol : :class:`pybamm.Symbol`
@@ -1282,7 +1264,6 @@ class BaseBatteryModel(pybamm.BaseModel):
             The parameter values to use during processing
         disc : :class:`pybamm.Discretisation`
             The discrisation to use
-
         Returns
         -------
         :class:`pybamm.Symbol`
