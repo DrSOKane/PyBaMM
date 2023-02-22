@@ -1,5 +1,8 @@
 # [Unreleased](https://github.com/pybamm-team/PyBaMM/)
 
+## Bug fixes
+- In equation for electrolyte conservation, moved transference number inside divergence operator to ensure lithium is conserved for non-constant transference number. 
+
 # [v23.1](https://github.com/pybamm-team/PyBaMM/tree/v23.1) - 2023-01-31
 
 ## Features
@@ -13,9 +16,6 @@
 
 - Fixed a bug where the solid phase conductivity was double-corrected for tortuosity when loading parameters from a BPX file ([#2638](https://github.com/pybamm-team/PyBaMM/pull/2638)).
 - Changed termination from "success" to "final time" for algebraic solvers to match ODE/DAE solvers ([#2613](https://github.com/pybamm-team/PyBaMM/pull/2613)).
-
-## Bug fixes
-- In equation for electrolyte conservation, moved transference number inside divergence operator to ensure lithium is conserved for non-constant transference number. 
 
 # [v22.12](https://github.com/pybamm-team/PyBaMM/tree/v22.12) - 2022-12-31
 
