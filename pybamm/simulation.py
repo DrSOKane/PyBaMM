@@ -457,7 +457,7 @@ class Simulation:
         experiment, where there may be several models and solvers to build.
         """
         if initial_soc is not None:
-            self.set_initial_soc(initial_soc)
+            self.set_initial_soc(initial_soc)  # consider replacing?
 
         if self.op_conds_to_built_models:
             return
