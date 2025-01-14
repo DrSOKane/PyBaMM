@@ -215,9 +215,10 @@ class BatteryModelOptions(pybamm.FuzzyDict):
                 Whether to make a state for the voltage and solve an algebraic equation
                 for it. Default is "false".
             * "working electrode" : str
-                Can be "both" (default) for a standard battery or "positive" for a
+                Can be "both" (default) for a standard battery, "positive" for a
                 half-cell where the negative electrode is replaced with a lithium metal
-                counter electrode.
+                counter electrode, or "none" for a test cell where both electrode are
+                lithium metal and only electrolyte is included in the model.
             * "x-average side reactions": str
                 Whether to average the side reactions (SEI growth, lithium plating and
                 the respective porosity change) over the x-axis in Single Particle
@@ -328,7 +329,7 @@ class BatteryModelOptions(pybamm.FuzzyDict):
                 "cation-exchange membrane",
             ],
             "voltage as a state": ["false", "true"],
-            "working electrode": ["both", "positive"],
+            "working electrode": ["both", "positive", "none"],
             "x-average side reactions": ["false", "true"],
         }
 
@@ -735,8 +736,10 @@ class BatteryModelOptions(pybamm.FuzzyDict):
             return ["separator", "positive electrode"]
         elif self["working electrode"] == "both":
             return ["negative electrode", "separator", "positive electrode"]
+        elif self["working electrode"] == "none":
+            return ["separator"]
         else:
-            raise NotImplementedError  # future proofing
+            raise NotImplementedError  # should be impossible to get here
 
     @property
     def electrode_types(self):
